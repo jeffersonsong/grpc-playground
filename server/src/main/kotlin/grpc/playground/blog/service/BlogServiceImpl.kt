@@ -31,6 +31,7 @@ class BlogServiceImpl : BlogServiceGrpcKt.BlogServiceCoroutineImplBase() {
 				.setText("This is a piece of test text $i")
 				.build()
 
+			blogList.add(blog)
 			authorCount[blog.author] = 1
 		}
 

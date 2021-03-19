@@ -5,12 +5,12 @@
  */
 
  buildscript {
-    ext.kotlinVersion = '1.3.72'
-    ext.coroutinesVersion = "1.3.7"
-    ext.protobufPlugInVersion = '0.8.12'
-    ext.protobufVersion = '3.12.2'
-    ext.grpcVersion = '1.29.0'
-    ext.grpcKotlinVersion = '0.1.3'
+    ext.kotlinVersion = '1.4.31'
+    ext.coroutinesVersion = "1.4.2"
+    ext.protobufPlugInVersion = '0.8.13'
+    ext.protobufVersion = '3.13.0'
+    ext.grpcVersion = '1.32.1'
+    ext.grpcKotlinVersion = '1.0.0'
 
     repositories {
         mavenCentral()
@@ -18,13 +18,13 @@
 
     dependencies {
         classpath "com.google.protobuf:protobuf-gradle-plugin:${protobufPlugInVersion}"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}"
     }
 }
 
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin.
-    id 'org.jetbrains.kotlin.jvm' version '1.3.71'
+    id 'org.jetbrains.kotlin.jvm' version "${kotlinVersion}"
 
     // Apply the application plugin to add support for building a CLI application.
     id 'application'
@@ -52,7 +52,7 @@ protobuf {
         }
 
         grpckt {
-            artifact = "io.grpc:protoc-gen-grpc-kotlin:$grpcKotlinVersion"
+            artifact = "io.grpc:protoc-gen-grpc-kotlin:$grpcKotlinVersion:jdk7@jar"
         }
     }
 
@@ -90,6 +90,7 @@ dependencies {
     implementation "io.grpc:grpc-protobuf:$grpcVersion"
     implementation "io.grpc:grpc-stub:$grpcVersion"
     implementation "io.grpc:grpc-kotlin-stub:$grpcKotlinVersion"
+    compile group: 'javax.annotation', name: 'javax.annotation-api', version: '1.3.2'
 }
 
 idea {
